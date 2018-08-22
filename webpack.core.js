@@ -72,6 +72,24 @@ var config = function(includePaths = undefined, excludePaths = /node_modules/) {
     this._target = 'web';
 };
 
+config.prototype.pushRule = function(rule, forDevelopment) {
+    if (forDevelopment && this._developmentRules) {
+        this._developmentRules.push(rule);
+    } else if (this._productionRules) {
+        this._productionRules.push(rule);
+    }
+    return this;
+};
+
+config.prototype.pushPlugin = function(plugin, forDevelopment) {
+    if (forDevelopment && this._developmentPlugins) {
+        this._developmentPlugins.push(plugin);
+    } else if (this._productionPlugins) {
+        this._productionPlugins.push(plugin);
+    }
+    return this;
+};
+
 config.prototype.addEntry = function(key, value) {
     if (this._entry) {
         this._entry[key] = value;
