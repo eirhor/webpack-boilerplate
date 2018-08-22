@@ -1,0 +1,8 @@
+{
+  "name": "webpack-boilerplate",
+  "version": "1.0.0",
+  "main": "webpack.core.js",
+  "author": "Eirik Horvath",
+  "license": "MIT",
+  "private": false
+}
