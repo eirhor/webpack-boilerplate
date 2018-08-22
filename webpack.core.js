@@ -1,4 +1,6 @@
 var path = require('path');
+var PrettierWebpackPlugin = require('prettier-webpack-plugin');
+var PrettierConfig = require('./.prettierrc');
 
 var modes = {
     production: 'production',
@@ -42,16 +44,30 @@ var config = function(includePaths = undefined, excludePaths = /node_modules/) {
     };
     this._include = includePaths;
     this._exclude = excludePaths;
-    this._developmentRules = [];
+    this._developmentRules = [
+
+    ];
     this._productionRules = [
         {
             test: /\.jsx?$/,
             use: {
                 loader: 'babel-loader',
             }
+        },
+        {
+            test: /\.(svg|woff|woff2|eot|gif|ttf|cur|png)$/,
+            use: {
+                loader: 'url-loader',
+                options: {
+                    name: 'static/[name].[hash].[ext]',
+                    limit: 10000
+                }
+            },
         }
     ];
-    this._developmentPlugins = [];
+    this._developmentPlugins = [
+        new PrettierWebpackPlugin(PrettierConfig)
+    ];
     this._productionPlugins = [];
     this._target = 'web';
 };

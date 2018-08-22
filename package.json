@@ -4,5 +4,20 @@
   "main": "webpack.core.js",
   "author": "Eirik Horvath",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "file-loader": "^2.0.0",
+    "prettier": "^1.14.2",
+    "prettier-webpack-plugin": "^1.1.0",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.17.0",
+    "webpack-cli": "^3.1.0"
+  }
 }
