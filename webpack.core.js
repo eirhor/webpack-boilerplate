@@ -72,6 +72,45 @@ var config = function(includePaths = undefined, excludePaths = /node_modules/) {
     this._target = 'web';
 };
 
+config.prototype.addStyleConfigs = function(mode) {
+    var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+    var extractTextPlugin = new ExtractTextWebpackPlugin({
+        filename: '[name].css',
+    });
+    var rule = {
+        test: /\.s?css$/,
+        use: extractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+                {
+                    loader: 'css-loader'
+                },
+                {
+                    loader: 'postcss-loader'
+                },
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        options: {
+                            sourceMap: mode === modes.production ? false : 'inline',
+                            outputStyle: mode === modes.production ? 'compressed' : 'expanded'
+                        }
+                    }
+                }
+            ]
+        })
+    };
+
+    if (mode === modes.production && this._productionPlugins && this._productionRules) {
+        this._productionRules.push(rule);
+        this._productionPlugins.push(extractTextPlugin);
+    } else if (this._developmentPlugins && this._developmentRules) {
+        this._developmentRules.push(rule);
+        this._developmentPlugins.push(extractTextPlugin);
+    }
+    return this;
+}
+
 config.prototype.pushRule = function(rule, forDevelopment) {
     if (forDevelopment && this._developmentRules) {
         this._developmentRules.push(rule);
