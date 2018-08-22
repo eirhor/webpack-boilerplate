@@ -5,6 +5,10 @@
   "author": "Eirik Horvath",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "webpack --env.development",
+    "build": "webpack --env.production"
+  },
   "dependencies": {
     "autoprefixer": "^9.1.3",
     "babel": "^6.23.0",

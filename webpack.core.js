@@ -1,6 +1,6 @@
 var path = require('path');
 var PrettierWebpackPlugin = require('prettier-webpack-plugin');
-var PrettierConfig = require('./.prettierrc');
+var PrettierConfig = require('./.prettierrc.js');
 
 var modes = {
     production: 'production',
@@ -152,7 +152,7 @@ config.prototype.setOutputNameFormat = function(nameFormat) {
 
 config.prototype.setMode = function(mode) {
     if (this._mode) {
-        this.mode = mode;
+        this._mode = mode;
     }
     return this;
 };
