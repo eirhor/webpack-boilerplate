@@ -72,7 +72,7 @@ var config = function(includePaths = undefined, excludePaths = /node_modules/) {
     this._target = 'web';
 };
 
-config.prototype.addStyleConfigs = function(mode) {
+config.prototype.addStyleConfig = function(mode) {
     var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
     var extractTextPlugin = new ExtractTextWebpackPlugin({
         filename: '[name].css',
@@ -109,7 +109,7 @@ config.prototype.addStyleConfigs = function(mode) {
         this._developmentPlugins.push(extractTextPlugin);
     }
     return this;
-}
+};
 
 config.prototype.pushRule = function(rule, forDevelopment) {
     if (forDevelopment && this._developmentRules) {
